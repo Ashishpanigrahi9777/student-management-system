@@ -25,11 +25,7 @@ SECRET_KEY = "django-insecure-1w7dp#rkwn*lhxg2j2q#kg-@0e9^99x!#*7_2jnu9!1zia5%jb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = [
-    "student-management-system-31l3.onrender.com",
-    "localhost",
-    "127.0.0.1",
-]
+ALLOWED_HOSTS = ["*"]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://student-management-system-31l3.onrender.com",
