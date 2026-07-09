@@ -1,0 +1,1 @@
+# Click build.sh in VS Code and paste this exactly:
