@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Announcements{% endblock %}
+{% block page_heading %}Announcements{% endblock %}
+{% block content %}
+<div class="page-card glass-card reveal">
+    <div class="page-card__head">
+        <div>
+            <p class="eyebrow">Communication</p>
+            <h3>Latest announcements</h3>
+        </div>
+        <a href="/admin/core/announcement/add/" class="btn-gradient">+ New Announcement</a>
+    </div>
+    {% for ann in announcements %}
+    <div class="announcement-card mb-3">
+        <div class="d-flex justify-content-between align-items-start gap-3 mb-2">
+            <strong>{{ ann.title }}</strong>
+            <span class="badge-soft">{{ ann.get_target_audience_display }}</span>
+        </div>
+        <p class="mb-2">{{ ann.content }}</p>
+        <small class="text-muted">{{ ann.created_at|date:"F d, Y" }}</small>
+    </div>
+    {% empty %}<p class="text-muted mb-0">No announcements yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

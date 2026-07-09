@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block page_heading %}Dashboard{% endblock %}
+{% block content %}
+<div class="hero-card glass-card reveal">
+    <div>
+        <p class="eyebrow">School overview</p>
+        <h3>Welcome back — your campus is thriving.</h3>
+        <p>Track students, attendance, and announcements from one elegant operations hub.</p>
+    </div>
+    <div class="hero-card__badge">
+        <span class="pulse-dot"></span>
+        Live summary
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card glass-card reveal">
+            <div>
+                <p>Students</p>
+                <h2>{{ total_students }}</h2>
+                <div class="stat-card__trend">+12% this term</div>
+            </div>
+            <div class="stat-card__icon blue"><i class="bi bi-people-fill"></i></div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card glass-card reveal">
+            <div>
+                <p>Teachers</p>
+                <h2>{{ total_teachers }}</h2>
+                <div class="stat-card__trend">Stable roster</div>
+            </div>
+            <div class="stat-card__icon purple"><i class="bi bi-person-workspace"></i></div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card glass-card reveal">
+            <div>
+                <p>Classes</p>
+                <h2>{{ total_classes }}</h2>
+                <div class="stat-card__trend">Balanced sections</div>
+            </div>
+            <div class="stat-card__icon emerald"><i class="bi bi-building"></i></div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+        <div class="stat-card glass-card reveal">
+            <div>
+                <p>Subjects</p>
+                <h2>{{ total_subjects }}</h2>
+                <div class="stat-card__trend">Well organized</div>
+            </div>
+            <div class="stat-card__icon sky"><i class="bi bi-book-half"></i></div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-lg-7">
+        <div class="page-card glass-card reveal">
+            <div class="page-card__head">
+                <div>
+                    <p class="eyebrow">Attendance pulse</p>
+                    <h3>Today's Attendance</h3>
+                </div>
+            </div>
+            <h2 class="mb-3">{{ attendance_rate }}%</h2>
+            <div class="progress-shell mb-3"><div class="progress-fill" style="width: {{ attendance_rate }}%"></div></div>
+            <div class="d-flex flex-wrap gap-2">
+                <span class="badge-soft badge-success">✅ {{ present_today }} present</span>
+                <span class="badge-soft badge-danger">❌ {{ absent_today }} absent</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="page-card glass-card reveal">
+            <div class="page-card__head">
+                <div>
+                    <p class="eyebrow">Latest updates</p>
+                    <h3>Announcements</h3>
+                </div>
+            </div>
+            {% for ann in announcements %}
+            <div class="announcement-card mb-2">
+                <h5>{{ ann.title }}</h5>
+                <p>{{ ann.content|truncatechars:100 }}</p>
+                <small class="text-muted">{{ ann.created_at|date:"M d, Y" }}</small>
+            </div>
+            {% empty %}
+            <p class="text-muted mb-0">No announcements yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

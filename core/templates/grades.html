@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Grades{% endblock %}
+{% block page_heading %}Grades{% endblock %}
+{% block content %}
+<div class="page-card glass-card reveal">
+    <div class="page-card__head">
+        <div>
+            <p class="eyebrow">Performance</p>
+            <h3>Gradebook</h3>
+        </div>
+        <a href="/admin/core/grade/add/" class="btn-gradient">+ Add Grade</a>
+    </div>
+    <div class="table-shell">
+        <table class="table modern-table mb-0">
+            <thead><tr><th>Student</th><th>Subject</th><th>Exam</th><th>Score</th><th>Term</th></tr></thead>
+            <tbody>
+            {% for g in grades %}
+            <tr>
+                <td>{{ g.student }}</td><td>{{ g.subject }}</td><td>{{ g.exam_type }}</td>
+                <td>{{ g.score }} / {{ g.max_score }}</td><td>{{ g.term }}</td>
+            </tr>
+            {% empty %}<tr><td colspan="5" class="text-center text-muted py-4">No grades yet.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

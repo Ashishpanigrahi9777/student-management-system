@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Classes{% endblock %}
+{% block page_heading %}Classes{% endblock %}
+{% block content %}
+<div class="page-card glass-card reveal">
+    <div class="page-card__head">
+        <div>
+            <p class="eyebrow">Academic structure</p>
+            <h3>Class roster</h3>
+        </div>
+        <a href="/admin/core/schoolclass/add/" class="btn-gradient">+ Add Class</a>
+    </div>
+    <div class="table-shell">
+        <table class="table modern-table mb-0">
+            <thead><tr><th>Name</th><th>Grade</th><th>Section</th><th>Teacher</th><th>Capacity</th><th>Year</th></tr></thead>
+            <tbody>
+            {% for c in classes %}
+            <tr>
+                <td>{{ c.name }}</td><td>{{ c.grade }}</td><td>{{ c.section }}</td>
+                <td>{{ c.teacher|default:"-" }}</td><td>{{ c.capacity }}</td><td>{{ c.academic_year }}</td>
+            </tr>
+            {% empty %}<tr><td colspan="6" class="text-center text-muted py-4">No classes yet.</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
